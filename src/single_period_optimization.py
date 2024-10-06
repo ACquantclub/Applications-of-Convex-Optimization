@@ -26,10 +26,13 @@ def single_period_optimization(r_t, w_t, gamma, phi_trade, phi_hold):
     # Problem definition
     problem = cp.Problem(objective, constraints)
 
-    # Solve the problem
-    problem.solve()
-
-    return z_t.value
+    # Solve the problem if the problem adheres to DCP rules
+    if(problem.is_dcp()):
+        problem.solve()
+        return z_t.value
+    else:
+        print("Error: problem with inputted values was not DCP")
+        return -1
 
 # Test Case 1: High risk aversion
 r_t = np.array([0.05, 0.07, 0.02])  # Expected returns

@@ -42,3 +42,27 @@ Fall 2024 Project: Applications of Convex Optimization
     ```
 
 2. Follow the instructions in the README located in the tests directory to run the tests.
+
+
+## Examples
+
+### Quick Start Example
+```bash
+from datetime import datetime
+from ConvexTrader import Portfolio, Trade, TradeType
+
+# initialize a sample portfolio
+portfolio = Portfolio()
+
+# initialize sample trades to perform trades in portfolio
+trades = [
+    Trade("V", 100, 300.0, datetime(2024, 1, 1), TradeType.BUY),
+    Trade("AXP", 50, 350.0, datetime(2024, 1, 2), TradeType.BUY),
+    Trade("MA", 50, 550.0, datetime(2024, 1, 3), TradeType.BUY),
+]
+
+# execute trades
+for trade in trades:
+    portfolio.execute_trade(trade)
+print(portfolio.holdings)
+```
